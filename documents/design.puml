@@ -1,0 +1,38 @@
+@startuml
+
+title Kotlin Demo App calling Github API with Spring Webflux
+
+participant "Consumer" as c
+participant "Kotlin Demo App" as d
+participant "Github API" as gh
+
+
+c->d : GET /users {1,2,3,4,5}
+
+group parallel
+
+group 1
+d->gh : GET https://api.github.com/users/1
+end
+
+group 2
+d->gh : GET https://api.github.com/users/2
+end
+
+group 3
+d->gh : GET https://api.github.com/users/3
+end
+
+group 4
+d->gh : GET https://api.github.com/users/4
+end
+
+group 5
+d->gh : GET https://api.github.com/users/5
+end
+
+end
+
+d->c : Response /users
+
+@enduml
