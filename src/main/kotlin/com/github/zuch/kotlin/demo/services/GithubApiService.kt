@@ -27,6 +27,12 @@ class GithubApiService(val webClient: WebClient) {
             .map { result ->
                 User(
                     result.login,
+                    result.name,
+                    result.company,
+                    result.location,
+                    result.email,
+                    result.hireable,
+                    result.bio,
                     result.public_repos,
                     result.public_gists,
                     result.followers,

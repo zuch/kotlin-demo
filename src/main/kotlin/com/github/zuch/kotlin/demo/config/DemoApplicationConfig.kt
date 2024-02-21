@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.KotlinFeature
+import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.zuch.kotlin.demo.constants.GITHUB_API_BASE_PATH
 
 import org.springframework.context.annotation.Bean
@@ -26,17 +29,15 @@ class DemoApplicationConfig {
             .build()
     }
 
-//    @Bean
-//    fun objectMapper(): ObjectMapper {
-//        val mapper = ObjectMapper()
-////        mapper.deactivateDefaultTyping()
-////        mapper.registerModule(JavaTimeModule())
-////        mapper.registerModule(Jdk8Module())
-//        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
-////        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-////        mapper.disable(DeserializationFeature.ACCEPT_FLOAT_AS_INT)
-////        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-////        mapper.enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL)
-//        return mapper
-//    }
+    @Bean
+    fun objectMapper(): ObjectMapper {
+        val mapper = jacksonObjectMapper()
+        mapper.registerModule(KotlinModule.Builder().build())
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+        mapper.disable(DeserializationFeature.ACCEPT_FLOAT_AS_INT)
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+        mapper.enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL)
+        return mapper
+    }
 }
