@@ -1,7 +1,7 @@
 package com.github.zuch.kotlin.demo.model.rest
 
 data class User(
-    val login: String,
+    val username: String,
     val name: String?,
     val company: String?,
     val location: String?,

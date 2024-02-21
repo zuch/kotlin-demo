@@ -1,6 +1,10 @@
-# kotlin demo
+# Kotlin Demo
 
 Spring Boot Kotlin demo project using Spring WebFlux to call GitHub Public API
+
+## Design
+
+![design](https://gist.githubusercontent.com/zuch/479b6c6b328af5253d313ce51e198152/raw/5c0829d4601e67a46658702b2c01e4864985b0ee/Kotlin_Demo_App_calling_Github_API_with_Spring_Webflux.png)
 
 ## API
 
@@ -13,7 +17,7 @@ POST localhost:8080/users
 Example Request Body
 ```json
 {
-  "logins" : [
+  "usernames" : [
     "charlax",
     "vinodtana",
     "tefra",
@@ -28,36 +32,17 @@ Example Response Body
 {
   "users": [
     {
-      "login": "vinodtana",
-      "name": "Vinod Tana",
-      "company": "Xerve innovations pvt ltd",
-      "location": "Bangalore",
-      "public_repos": 12,
-      "public_gists": 0,
-      "followers": 1,
-      "following": 2
-    },
-    {
-      "login": "charlax",
+      "username": "charlax",
       "name": "Charles-Axel Dein",
       "location": "New York",
       "bio": "Scaling teams, product and tech at a stealth startup",
       "public_repos": 104,
       "public_gists": 16,
-      "followers": 1810,
+      "followers": 1813,
       "following": 41
     },
     {
-      "login": "tefra",
-      "name": "Chris Tsou",
-      "location": "Greece",
-      "public_repos": 39,
-      "public_gists": 7,
-      "followers": 33,
-      "following": 7
-    },
-    {
-      "login": "ansarinaeemakhtar",
+      "username": "ansarinaeemakhtar",
       "name": "Naeem Akhtar",
       "location": "Pune",
       "hireable": "true",
@@ -67,13 +52,32 @@ Example Response Body
       "following": 90
     },
     {
-      "login": "cat",
+      "username": "cat",
       "name": "Nicola Bonelli",
       "location": "Italy",
       "public_repos": 1,
       "public_gists": 0,
       "followers": 27,
       "following": 1
+    },
+    {
+      "username": "tefra",
+      "name": "Chris Tsou",
+      "location": "Greece",
+      "public_repos": 39,
+      "public_gists": 7,
+      "followers": 33,
+      "following": 7
+    },
+    {
+      "username": "vinodtana",
+      "name": "Vinod Tana",
+      "company": "Xerve innovations pvt ltd",
+      "location": "Bangalore",
+      "public_repos": 12,
+      "public_gists": 0,
+      "followers": 1,
+      "following": 2
     }
   ]
 }

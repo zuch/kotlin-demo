@@ -24,6 +24,6 @@ class ConsumerController(
         return ResponseEntity
             .status(HttpStatus.OK)
             .contentType(MediaType.APPLICATION_JSON)
-            .body(gitHubApiService.fetchGithubUsers(usersRequest.logins))
+            .body(gitHubApiService.fetchGithubUsers(usersRequest.usernames))
     }
 }
