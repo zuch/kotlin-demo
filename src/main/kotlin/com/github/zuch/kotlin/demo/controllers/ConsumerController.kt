@@ -1,7 +1,6 @@
 package com.github.zuch.kotlin.demo.controllers
 
 import com.github.zuch.kotlin.demo.constants.USERS_PATH_PREFIX
-import com.github.zuch.kotlin.demo.mapper.UsersMapper
 import com.github.zuch.kotlin.demo.model.rest.UsersRequest
 import com.github.zuch.kotlin.demo.model.rest.UsersResponse
 import com.github.zuch.kotlin.demo.services.GithubApiService
@@ -17,7 +16,7 @@ import reactor.core.publisher.Mono
 @RequestMapping(USERS_PATH_PREFIX)
 @RestController
 class ConsumerController(
-    val usersMapper: UsersMapper, val gitHubApiService: GithubApiService
+    val gitHubApiService: GithubApiService
 ) {
 
     @PostMapping(consumes = ["application/json"], produces = ["application/json"])
