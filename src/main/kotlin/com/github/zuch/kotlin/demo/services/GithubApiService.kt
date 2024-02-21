@@ -6,18 +6,13 @@ import com.github.zuch.kotlin.demo.model.rest.UsersResponse
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.toMono
 
 @Service
 class GithubApiService(val webClient: WebClient) {
 
-    fun fetchGithubUsers(logins: List<String>): UsersResponse? {
-
-        //https://api.github.com/users/1
-        //https://api.github.com/users/2
-        //https://api.github.com/users/3
-        //https://api.github.com/users/4
-        //https://api.github.com/users/5
-
+    fun fetchGithubUsers(logins: List<String>): Mono<UsersResponse> {
         return Flux.fromIterable(logins)
             .map { login -> "https://api.github.com/users/$login" }
             .flatMap { url ->
@@ -29,7 +24,6 @@ class GithubApiService(val webClient: WebClient) {
                     .log()
                 result
             }
-            .parallel(5)
             .map { result ->
                 User(
                     result.login,
@@ -39,9 +33,8 @@ class GithubApiService(val webClient: WebClient) {
                     result.following
                 )
             }
-            .sequential()
             .collectList()
             .map { users -> UsersResponse(users) }
-            .block()
+            .toMono()
     }
 }
